@@ -2,7 +2,7 @@
   <div class="container my-5">
     <div class="row justify-content-center">
       <div class="col-8">
-        <router-link to="/" class="btn btn-primary btn-sm rounded shadow mb-3"
+        <router-link to="/create" class="btn btn-primary btn-sm rounded shadow mb-3"
           >Add</router-link
         >
         <div class="card rounded shadow">
@@ -28,7 +28,7 @@
                   <td>
                     <div class="btn-group">
                       <router-link
-                        to="/edit/{{ id:transaction.id }}"
+                        :to="'/edit/' + transaction.id"
                         class="btn btn-small btn-outline-info"
                         >Edit</router-link
                       >

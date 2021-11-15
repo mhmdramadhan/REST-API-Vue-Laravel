@@ -46,11 +46,27 @@
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { axios } from 'axios'
+import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import { axios } from "axios";
 export default {
+  setup() {
+    // data binding
+    const transaction = reactive({
+      title: "",
+      amount: "",
+      time: "",
+      type: "",
+    });
 
+    const validation = ref([])
+
+    const router = useRouter();
+    
+    function store() {
+        
+    }
+  },
 };
 </script>
 

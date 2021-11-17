@@ -2,9 +2,7 @@
   <div class="container my-5">
     <div class="row justify-content-center">
       <div class="col-8">
-        <router-link to="/create" class="btn btn-primary btn-sm rounded shadow mb-3"
-          >Add</router-link
-        >
+        <router-link to="/create" class="btn btn-primary btn-sm rounded shadow mb-3">Add</router-link>
         <div class="card rounded shadow">
           <div class="card-header">Transaction List</div>
           <div class="card-body">
@@ -18,10 +16,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  v-for="(transaction, index) in transactions.data"
-                  :key="index"
-                >
+                <tr v-for="(transaction, index) in transactions.data" :key="index">
                   <td>{{ transaction.title }}</td>
                   <td>{{ transaction.amount }}</td>
                   <td>{{ transaction.type }}</td>
@@ -30,11 +25,11 @@
                       <router-link
                         :to="'/edit/' + transaction.id"
                         class="btn btn-small btn-outline-info"
-                        >Edit</router-link
-                      >
-                      <button class="btn btn-small btn-outline-danger">
-                        Delete
-                      </button>
+                      >Edit</router-link>
+                      <button
+                        class="btn btn-small btn-outline-danger"
+                        @click.prevent="destroy(transaction.id, index)"
+                      >Delete</button>
                     </div>
                   </td>
                 </tr>
@@ -69,8 +64,21 @@ export default {
         });
     });
 
+    function destroy(id, index) {
+      axios
+        .delete(`http://course-laravel-akuntapi.test/api/transaction/${id}`)
+        .then(() => {
+          // menghapus baris data pada table
+          transactions.value.data.splice(index, 1)
+        })
+        .catch((err) => {
+          console.log(err.response.data)
+        });
+    }
+
     return {
       transactions,
+      destroy
     };
   },
 };

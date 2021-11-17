@@ -50,7 +50,7 @@
 <script>
 import axios from "axios";
 // onmounted semacam hook untuk menarik data lalu ingin melakukan apa
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, ref } from "vue";
 
 export default {
   setup() {
